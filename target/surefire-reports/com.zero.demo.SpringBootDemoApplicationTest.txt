@@ -1,0 +1,11 @@
+-------------------------------------------------------------------------------
+Test set: com.zero.demo.SpringBootDemoApplicationTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.623 s <<< FAILURE! - in com.zero.demo.SpringBootDemoApplicationTest
+test(com.zero.demo.SpringBootDemoApplicationTest)  Time elapsed: 0.002 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.kafka.config.internalKafkaListenerAnnotationProcessor': Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.kafka.annotation.KafkaListenerAnnotationBeanPostProcessor]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: org/springframework/core/log/LogAccessor
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.kafka.annotation.KafkaListenerAnnotationBeanPostProcessor]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: org/springframework/core/log/LogAccessor
+Caused by: java.lang.NoClassDefFoundError: org/springframework/core/log/LogAccessor
+Caused by: java.lang.ClassNotFoundException: org.springframework.core.log.LogAccessor
+

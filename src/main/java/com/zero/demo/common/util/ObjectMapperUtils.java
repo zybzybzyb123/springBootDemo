@@ -30,15 +30,12 @@ public final class ObjectMapperUtils {
     private static final String EMPTY_ARRAY_JSON = "[]";
     private static final ObjectMapper MAPPER =
             new ObjectMapper();
-//                    .registerModule(new GuavaModule());
 
     static {
         MAPPER.disable(FAIL_ON_UNKNOWN_PROPERTIES);
         MAPPER.enable(ALLOW_UNQUOTED_CONTROL_CHARS);
         MAPPER.enable(ALLOW_COMMENTS);
         MAPPER.registerModule(new ParameterNamesModule());
-//        MAPPER.registerModule(new KotlinModule());
-//        MAPPER.registerModule(new ProtobufModule());
     }
 
     public static String toJSON(@Nullable Object obj) {
