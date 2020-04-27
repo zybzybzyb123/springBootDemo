@@ -1,8 +1,10 @@
 package com.zero.demo.controller;
 
+import com.zero.demo.common.util.ObjectMapperUtils;
 import com.zero.demo.entity.User;
 import com.zero.demo.entity.common.RestResult;
 import com.zero.demo.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/user")
+@Slf4j
 public class UserController {
 
     @Autowired
@@ -24,7 +27,9 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User getById(@PathVariable int id) {
-        return userService.getById(id);
+        User user = userService.getById(id);
+        log.info("user={}", ObjectMapperUtils.toJSON(user));
+        return user;
     }
 
     @PostMapping

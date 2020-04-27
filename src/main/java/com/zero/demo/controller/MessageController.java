@@ -1,16 +1,15 @@
 package com.zero.demo.controller;
 
 import com.zero.demo.common.config.kafka.common.CommonMessage;
-import com.zero.demo.common.config.kafka.common.KafkaProducerConfig;
 import com.zero.demo.common.util.ObjectMapperUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -23,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 public class MessageController {
 
     @Autowired
-    private KafkaProducerConfig<String, String> kafkaProducerConfig;
+    private KafkaTemplate kafkaTemplate;
 
     @PostMapping("/send")
     public void sendMessageg(@RequestBody String message) throws Exception  {
@@ -33,6 +32,6 @@ public class MessageController {
                         .message(message)
                         .build();
         log.info("commonMessage={}", ObjectMapperUtils.toJSON(commonMessage));
-        kafkaProducerConfig.kafkaTemplate().send("test", ObjectMapperUtils.toJSON(commonMessage)).get(3, TimeUnit.SECONDS);
+        kafkaTemplate.send("test", ObjectMapperUtils.toJSON(commonMessage)).get(3, TimeUnit.SECONDS);
     }
 }

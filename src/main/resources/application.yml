@@ -1,17 +1,35 @@
+localAddress: 127.0.0.1
+
+logging:
+  config: classpath:logback-spring.xml
+
 #启动端口
 server:
   port: 8081
+  tomcat:
+    accesslog:
+      buffered: true
+      directory: /home/zero/data/springBootDemo/tomcat
+      enabled: true
+      file-date-format: .yyyy-MM-dd
+      pattern: common
+      prefix: access_log
+      rename-on-rotate: false
+      request-attributes-enabled: false
+      rotate: true
+      suffix: .log
 
-localAddress: 127.0.0.1
+zkServer: 127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183
 
 spring:
   datasource:
-    url: jdbc:mysql://${localAddress}:3306/test?characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://${localAddress}:3306/test?characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
 
   kafka:
+    enable: false
     # 以逗号分隔的地址列表，用于建立与Kafka集群的初始连接(kafka 默认的端口号为9092)
     bootstrap-servers: ${localAddress}:9092
     producer:

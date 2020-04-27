@@ -3,6 +3,8 @@ package com.zero.demo.common.config.kafka.consumer;
 import com.zero.demo.common.config.kafka.common.CommonMessage;
 import com.zero.demo.common.util.ObjectMapperUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
+@ConditionalOnProperty("spring-kafka-enable")
 public class KafkaMessageConsumer {
 
 

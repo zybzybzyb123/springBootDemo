@@ -3,18 +3,25 @@ package com.zero.demo.service.impl;
 import com.zero.demo.dao.UserMapper;
 import com.zero.demo.entity.User;
 import com.zero.demo.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 /**
  * @author zero
  * @created 2020/04/12
  */
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
 
-   @Autowired
-   private UserMapper userMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public User getById(int id) {
